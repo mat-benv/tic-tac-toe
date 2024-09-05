@@ -39,7 +39,7 @@ while True:
 #Outra coisa que eu queria fazer mas não sei como é impedir que um jogador "marque por cima" do outro.
 
 #Essa variável desenha o tabuleiro. Tem que ficar dentro do loop para se atualizar.
-    tabuleiro = f'\t  A\t B\t C \n\t1{celA1}\t{celB1}\t{celC1}\n\t2{celA2}\t{celB2}\t{celC2}\n\t3{celA3}\t{celB3}\t{celC3}'
+    tabuleiro = f'\t   A\t B\t C\n\t1 {celA1}\t{celB1}\t{celC1}\n\n\t2 {celA2}\t{celB2}\t{celC2}\n\n\t3 {celA3}\t{celB3}\t{celC3}'
 
 
 #Eu fiquei com muitos problemas com essa parte e acabei pesquisando online e fui relembrado de que as listas não se atualizam
@@ -112,3 +112,5 @@ while True:
 
         else:
             print("Digite uma jogada válida. Seu símbolo, Letra e depois número (nesta ordem. Ex: ob2).")
+
+input("Obrigado por jogar! ")
