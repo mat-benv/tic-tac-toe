@@ -27,7 +27,7 @@ celC3 = '| |'
 vitoriaX = ['|X|', '|X|', '|X|']
 vitoriaO = ['|O|', '|O|', '|O|']
 
-print("Jogo da Velha\nDigite seu símbolo (X ou O), a letra (linha) e o número (coluna) para marcar no tabuleiro. (Ex. ob2)")
+print("Jogo da Velha\nDigite seu símbolo (X ou O), a letra (coluna) e o número (linha) para marcar no tabuleiro. (Ex. ob2, xa3)")
 
 while True:
 
@@ -56,8 +56,9 @@ while True:
 
 #Aqui declarei esta variável para não ficar enorme o código nas duas vezes que se checa por vitória.
     listaLinColDiag = [checkLinha1, checkLinha2, checkLinha3, checkColunaA, checkColunaB, checkColunaC, checkDiagDir, checkDiagEsq]
-    
+    allCels = [celA1, celA2, celA3, celB1, celB2, celB3, celC1, celC2, celC3]
 #Checando se há vitória. Também imprime o tabuleiro final.
+
     if vitoriaX in listaLinColDiag:
         print(tabuleiro)
         print('X é o vencedor!')
@@ -66,7 +67,12 @@ while True:
         print(tabuleiro)
         print('O é o vencedor!')
         break
-    
+
+    elif '| |' not in allCels: #checa se o tabuleiro está cheio (se deu velha)
+        print(tabuleiro)
+        print('Deu velha! :(')
+        break
+
     else:
         print(tabuleiro)
         jogada = input("Jogada: ").upper() #coloca o input em uppercase para padronizar mesmo se o usuário usar lowercase
