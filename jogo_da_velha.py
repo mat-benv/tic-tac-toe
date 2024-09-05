@@ -1,4 +1,4 @@
-#Autor: Mateus Benvenutti
+#Autor: Mateus Pereira Benvenutti
 #Data: 05/09/2024
 #Florianópolis, SC
 #Bacharelado em Ciências da Computação
@@ -9,6 +9,7 @@
 #Este código visa construir um jogo da velha simples para o primeiro trabalho da disciplina.
 #A ideia é tabular pequenas células num tabuleiro e ir preenchendo elas checando a input do usuário com a função if
 #Provavelmente tem um jeito mais eficiente de fazer isso, mas acho que é o jeito que fica mais bonitinho no terminal
+#(Mesmo assim a coluna C fica levemente mais separada das outras, o que me deixa bem frustrado.)
 
 #O comando para a jogada segue mais ou menos uma notação de xadrez: primeiro a peça, depois coluna, depois linha.
 
@@ -35,7 +36,9 @@ while True:
 #para imprimir a mensagem de vitória.
 #Em pensei em tentar fazer uma forma do jogo indicar quando deu empate (deu velha), mas não achei nada que não fosse talvez
 #quebrar outra coisa. Uma ideia que um amigo me deu foi definir o tamanho do loop para 9 iterações (número máximo de jogadas).
-#Talvez eu ainda faça isso em uma nova versão.
+#Achei que isso fosse dar erro caso alguém marcasse errado e tivesse que remarcar, então escolhi fazer uma pergunta no final de
+#cada jogo.
+
 #Outra coisa que eu queria fazer mas não sei como é impedir que um jogador "marque por cima" do outro.
 
 #Essa variável desenha o tabuleiro. Tem que ficar dentro do loop para se atualizar.
@@ -57,21 +60,39 @@ while True:
 #Aqui declarei esta variável para não ficar enorme o código nas duas vezes que se checa por vitória.
     listaLinColDiag = [checkLinha1, checkLinha2, checkLinha3, checkColunaA, checkColunaB, checkColunaC, checkDiagDir, checkDiagEsq]
     allCels = [celA1, celA2, celA3, celB1, celB2, celB3, celC1, celC2, celC3]
-#Checando se há vitória. Também imprime o tabuleiro final.
 
+#Checando se há vitória. Também imprime o tabuleiro final.
     if vitoriaX in listaLinColDiag:
         print(tabuleiro)
         print('X é o vencedor!')
-        break
+        a = input("Jogar de novo?(s/n) ").lower()
+        if a == 's':
+            celA1 = celA2 = celA3 = celB1 = celB2 = celB3 = celC1 = celC2 = celC3 = '| |'
+            continue
+        else:
+            break
+
     elif vitoriaO in listaLinColDiag:
         print(tabuleiro)
         print('O é o vencedor!')
-        break
+        a = input("Jogar de novo?(s/n) ").lower()
+        if a == 's':
+            celA1 = celA2 = celA3 = celB1 = celB2 = celB3 = celC1 = celC2 = celC3 = '| |'
+            continue
+        else:
+            break
 
     elif '| |' not in allCels: #checa se o tabuleiro está cheio (se deu velha)
         print(tabuleiro)
         print('Deu velha! :(')
-        break
+        a = input("Jogar de novo?(s/n) ").lower()
+        if a == 's':
+            celA1 = celA2 = celA3 = celB1 = celB2 = celB3 = celC1 = celC2 = celC3 = '| |'
+            continue
+        else:
+            break
+#No fim de cada checagem, o programa pergunta se quer continuar jogando. Se diz que sim, ele "apaga" todas as marcações no
+#tabuleiro e retorna para o começo do loop
 
     else:
         print(tabuleiro)
@@ -116,7 +137,8 @@ while True:
         elif jogada == 'OC3':
             celC3 = '|O|'
 
+        #manda o usuário usar o programa direito caso ele só digite qualquer coisa
         else:
             print("Digite uma jogada válida. Seu símbolo, Letra e depois número (nesta ordem. Ex: ob2).")
 
-input("Obrigado por jogar! ")
+input("Obrigado por jogar! ") #essa mensagem é um input pro programa não fechar abruptamente no fim do jogo.
