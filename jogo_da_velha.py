@@ -28,7 +28,7 @@ celC3 = '| |'
 vitoriaX = ['|X|', '|X|', '|X|']
 vitoriaO = ['|O|', '|O|', '|O|']
 
-print("Jogo da Velha\nDigite seu símbolo (X ou O), a letra (coluna) e o número (linha) para marcar no tabuleiro. (Ex. ob2, xa3)")
+print('Jogo da Velha\nDigite seu símbolo (X ou O), a letra (coluna) e o número (linha) para marcar no tabuleiro. (Ex. ob2, xa3)\nDigite "SAIR" para sair.')
 
 while True:
 
@@ -100,45 +100,47 @@ while True:
 
 #if dentro de if para computar as jogadas e desenhar elas no tabuleiro
 
-        if jogada == 'XA1':
+        if jogada == 'XA1' and celA1 == '| |':
             celA1 = '|X|'
-        elif jogada == 'OA1':
+        elif jogada == 'OA1' and celA1 == '| |':
             celA1 = '|O|'
-        elif jogada == 'XB1':
+        elif jogada == 'XB1' and celB1 == '| |':
             celB1 = '|X|'
-        elif jogada == 'OB1':
+        elif jogada == 'OB1' and celB1 == '| |':
             celB1 = '|O|'
-        elif jogada == 'XC1':
+        elif jogada == 'XC1' and celC1 == '| |':
             celC1 = '|X|'
-        elif jogada == 'OC1':
+        elif jogada == 'OC1' and celC1 == '| |':
             celC1 = '|O|'
-        elif jogada == 'XA2':
+        elif jogada == 'XA2' and celA2 == '| |':
             celA2 = '|X|'
-        elif jogada == 'OA2':
+        elif jogada == 'OA2' and celA2 == '| |':
             celA2 = '|O|'
-        elif jogada == 'XB2':
+        elif jogada == 'XB2' and celB2 == '| |':
             celB2 = '|X|'
-        elif jogada == 'OB2':
+        elif jogada == 'OB2' and celB2 == '| |':
             celB2 = '|O|'
-        elif jogada == 'XC2':
+        elif jogada == 'XC2' and celC2 == '| |':
             celC2 = '|X|'
-        elif jogada == 'OC2':
+        elif jogada == 'OC2' and celC2 == '| |':
             celC2 = '|O|'
-        elif jogada == 'XA3':
+        elif jogada == 'XA3' and celA3 == '| |':
             celA3 = '|X|'
-        elif jogada == 'OA3':
+        elif jogada == 'OA3' and celA3 == '| |':
             celA3 = '|O|'
-        elif jogada == 'XB3':
+        elif jogada == 'XB3' and celB3 == '| |':
             celB3 = '|X|'
-        elif jogada == 'OB3':
+        elif jogada == 'OB3' and celB3 == '| |':
             celB3 = '|O|'
-        elif jogada == 'XC3':
+        elif jogada == 'XC3' and celC3 == '| |':
             celC3 = '|X|'
-        elif jogada == 'OC3':
+        elif jogada == 'OC3' and celC3 == '| |':
             celC3 = '|O|'
+        elif jogada == 'SAIR':
+            break
 
         #manda o usuário usar o programa direito caso ele só digite qualquer coisa
         else:
-            print("Digite uma jogada válida. Seu símbolo, Letra e depois número (nesta ordem. Ex: ob2).")
+            print('Digite uma jogada válida. Seu símbolo, letra e depois número (nesta ordem. Ex: ob2).\nO espaço deve estar vazio.\nDigite "SAIR" para sair.')
 
 input("Obrigado por jogar! ") #essa mensagem é um input pro programa não fechar abruptamente no fim do jogo.
