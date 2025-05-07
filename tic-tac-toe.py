@@ -1,21 +1,5 @@
-#Autor: Mateus Pereira Benvenutti
-#Data: 05/09/2024
-#Florianópolis, SC
-#Bacharelado em Ciências da Computação
-#Universidade do Vale do Itajaí
-#Disciplina de Introdução à Python
-#Professor: Evandro
-
-#Este código visa construir um jogo da velha simples para o primeiro trabalho da disciplina.
-#A ideia é tabular pequenas células num tabuleiro e ir preenchendo elas checando a input do usuário com a função if
-#Provavelmente tem um jeito mais eficiente de fazer isso, mas acho que é o jeito que fica mais bonitinho no terminal
-#(Mesmo assim a coluna C fica levemente mais separada das outras, o que me deixa bem frustrado.)
-
-#O comando para a jogada segue mais ou menos uma notação de xadrez: primeiro a peça, depois coluna, depois linha.
-
-#Essas são as strings que montam o tabuleiro e que checam se há vitória. As primeiras mudam conforme anda o jogo,
-#as últimas são fixas. Poderia ter declarado uma lista fixa, mas fiquei preocupado que a comparação com as linhas
-#que é feita depois desse erro por causa disso.
+#These are the strings that build the board and check for victory. The "cel" ones chance as the game goes on,
+#the "vitoria" ones are constante.
 celA1 = '| |'
 celA2 = '| |'
 celA3 = '| |'
@@ -32,22 +16,10 @@ print('Jogo da Velha\nDigite seu símbolo (X ou O), a letra (coluna) e o número
 
 while True:
 
-#Aqui começa o loop. A primeira coisa que ele faz é atualizar as listas que vão ser comparadas com vitoriaX e vitoriaO
-#para imprimir a mensagem de vitória.
-#Em pensei em tentar fazer uma forma do jogo indicar quando deu empate (deu velha), mas não achei nada que não fosse talvez
-#quebrar outra coisa. Uma ideia que um amigo me deu foi definir o tamanho do loop para 9 iterações (número máximo de jogadas).
-#Achei que isso fosse dar erro caso alguém marcasse errado e tivesse que remarcar, então escolhi fazer uma pergunta no final de
-#cada jogo.
-
-#Outra coisa que eu queria fazer mas não sei como é impedir que um jogador "marque por cima" do outro.
-
-#Essa variável desenha o tabuleiro. Tem que ficar dentro do loop para se atualizar.
+    #Updating the board.
     tabuleiro = f'\t   A\t B\t C\n\t1 {celA1}\t{celB1}\t{celC1}\n\n\t2 {celA2}\t{celB2}\t{celC2}\n\n\t3 {celA3}\t{celB3}\t{celC3}'
 
-
-#Eu fiquei com muitos problemas com essa parte e acabei pesquisando online e fui relembrado de que as listas não se atualizam
-#sozinhas quando uma variável que foi declarada dentro delas sofre alteração. Quando a lista é declarada, ela faz um snapshot
-#das variáveis. Por isso coloquei essa parte dentro do loop.
+    #Updantint lists of cells. These are read for a victory check.
     checkLinha1 = [celA1, celB1, celC1]
     checkLinha2 = [celA2, celB2, celC2]
     checkLinha3 = [celA3, celB3, celC3]
@@ -57,11 +29,11 @@ while True:
     checkDiagEsq = [celA1, celB2, celC3]
     checkDiagDir = [celC1, celB2, celA3]
 
-#Aqui declarei esta variável para não ficar enorme o código nas duas vezes que se checa por vitória.
+#Updating lists of victory conditions and cells.
     listaLinColDiag = [checkLinha1, checkLinha2, checkLinha3, checkColunaA, checkColunaB, checkColunaC, checkDiagDir, checkDiagEsq]
     allCels = [celA1, celA2, celA3, celB1, celB2, celB3, celC1, celC2, celC3]
 
-#Checando se há vitória. Também imprime o tabuleiro final.
+#Checking for victory.
     if vitoriaX in listaLinColDiag:
         print(tabuleiro)
         print('X é o vencedor!')
@@ -82,7 +54,8 @@ while True:
         else:
             break
 
-    elif '| |' not in allCels: #checa se o tabuleiro está cheio (se deu velha)
+    #Checking for a full board.
+    elif '| |' not in allCels: 
         print(tabuleiro)
         print('Deu velha! :(')
         a = input("Jogar de novo?(s/n) ").lower()
@@ -91,15 +64,13 @@ while True:
             continue
         else:
             break
-#No fim de cada checagem, o programa pergunta se quer continuar jogando. Se diz que sim, ele "apaga" todas as marcações no
-#tabuleiro e retorna para o começo do loop
+#After each game, the user is prompted to play again, if "yes", the board is wiped and the while loop continues.
 
     else:
         print(tabuleiro)
-        jogada = input("Jogada: ").upper() #coloca o input em uppercase para padronizar mesmo se o usuário usar lowercase
+        jogada = input("Jogada: ").upper()
 
-#if dentro de if para computar as jogadas e desenhar elas no tabuleiro
-
+#Checking for each possible play. Very ineffient, but it's my first project and I didn't know any better.
         if jogada == 'XA1' and celA1 == '| |':
             celA1 = '|X|'
         elif jogada == 'OA1' and celA1 == '| |':
@@ -139,8 +110,8 @@ while True:
         elif jogada == 'SAIR':
             break
 
-        #manda o usuário usar o programa direito caso ele só digite qualquer coisa
+        #For invalid input.
         else:
             print('Digite uma jogada válida. Seu símbolo, letra e depois número (nesta ordem. Ex: ob2).\nO espaço deve estar vazio.\nDigite "SAIR" para sair.')
 
-input("Obrigado por jogar! ") #essa mensagem é um input pro programa não fechar abruptamente no fim do jogo.
+input("Obrigado por jogar! ") #End message.
